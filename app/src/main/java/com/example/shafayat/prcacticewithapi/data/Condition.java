@@ -13,23 +13,28 @@ public class Condition implements JSONPopulator {
     private String description;
 
     public int getCode(){
+
         return code;
     }
 
     public int getTemperature(){
+
         return temperature;
     }
 
     public String getDescription(){
+
         return description;
     }
 
     @Override
     public void populate(JSONObject data) {
 
-        code = data.optInt("Code");
-        temperature = data.optInt("temp");
-        description = data.optString("text");
+        if(data != null) {
+            code = data.optInt("code");
+            temperature = data.optInt("temp");
+            description = data.optString("text");
+        }
 
     }
 }

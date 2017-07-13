@@ -1,6 +1,7 @@
 package com.example.shafayat.prcacticewithapi;
 
 import android.app.ProgressDialog;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,17 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
     @Override
     public void serviceSuccess(Channel channel) {
+
         dialog.hide();
+
+        int resource = getResources().getIdentifier("drawable/icon_"+channel.getItem().getCondition().getCode(), null, getPackageName());
+
+        Drawable weatherIconDrawable = getResources().getDrawable(resource);
+        weatherIconImgeview.setImageDrawable(weatherIconDrawable);
+
+        locationTextView.setText(service.getLocation());
+        conditionTextView.setText(channel.getItem().getCondition().getDescription());
+        temperatureTextView.setText(channel.getItem().getCondition().getTemperature()+' '+channel.getUnits().getTemperature());
     }
 
     @Override
