@@ -33,13 +33,14 @@ public class YahooWeatherCallBack {
     }
 
     public void refreshWeather(final String location){
+        this.location = location;
         new AsyncTask<String, Void, String>(){
 
             @Override
             protected String doInBackground(String... params) {
 
                 String YQL = String.format("select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"%s\")", location);
-                String endpoints = String.format("https://query.yahooapis.com/v1/public/yql?q=%s&format=json", Uri.encode(YQL));
+                String endpoints = String.format("https://query.yahooapis.com/v1/public/yql?q=%s&format=json", YQL);
 
                 try {
                     URL url = new URL(endpoints);

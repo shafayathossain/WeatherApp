@@ -18,7 +18,7 @@ public class Item implements JSONPopulator {
     public void populate(JSONObject data) {
 
         condition = new Condition();
-        condition.populate(data.optJSONObject("Condition"));
+        condition.populate(data.optJSONObject("condition"));
 
     }
 }

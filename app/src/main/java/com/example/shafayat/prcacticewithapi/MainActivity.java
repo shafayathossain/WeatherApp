@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
         service = new YahooWeatherCallBack(this);
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading...");
-        service.refreshWeather("Austin, TX");
+        service.refreshWeather("goa");
     }
 
     @Override
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements WeatherServiceCal
 
         dialog.hide();
 
+        Toast.makeText(this, ""+channel.getItem().getCondition().getTemperature(), Toast.LENGTH_SHORT).show();
         int resource = getResources().getIdentifier("drawable/icon_"+channel.getItem().getCondition().getCode(), null, getPackageName());
 
         Drawable weatherIconDrawable = getResources().getDrawable(resource);
